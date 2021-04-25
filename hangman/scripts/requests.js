@@ -60,8 +60,8 @@ const getDefinition = async (word, type) => {
       mode: "no-cors",
       Accept: "application/json",
       headers: {
-        app_id: "6d5ed903",
-        app_key: "dc8d99a472c24587f0be8d1bff6e993b",
+        app_id: "id",
+        app_key: "key",
       },
     }
   );
