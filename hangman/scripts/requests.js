@@ -1,5 +1,5 @@
 const getPuzzle = async (wordCount) => {
-  getDefinition();
+  await getDefinition();
   const response = await fetch(
     `//puzzle.mead.io/puzzle?wordCount=${wordCount}`
   );
@@ -57,7 +57,7 @@ const getDefinition = async (word, type) => {
     "https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/ace?strictMatch=false",
     {
       method: "GET",
-      mode: "cors",
+      mode: "no-cors",
       Accept: "application/json",
       headers: {
         app_id: "6d5ed903",
@@ -65,7 +65,7 @@ const getDefinition = async (word, type) => {
       },
     }
   );
-  console.log("this is response definition", response.json());
+  console.log("this is response definition", response);
   //   } else {
   //   }
 };
