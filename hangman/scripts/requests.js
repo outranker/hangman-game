@@ -57,12 +57,17 @@ const getDefinition = async (word, type) => {
     "https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/ace?strictMatch=false",
     {
       method: "GET",
-      mode: "no-cors",
-      Accept: "application/json",
+      //   mode: "same-origin",
+      cache: "no-cache",
+      credentials: "include",
       headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
         app_id: "id",
         app_key: "key",
       },
+      redirect: "follow", // manual, *follow, error
+      referrer: "no-referrer",
     }
   );
   console.log("this is response definition", response);
