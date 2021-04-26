@@ -1,8 +1,18 @@
 const puzzleEl = document.querySelector("#puzzle");
 const guessesEl = document.querySelector("#guesses");
 const defs = document.querySelector("#translation");
+const loader = document.querySelector("#loading");
 let game1;
-
+function displayLoading() {
+  loader.classList.add("display");
+  // to stop loading after some time
+  setTimeout(() => {
+    loader.classList.remove("display");
+  }, 5000);
+}
+function hideLoading() {
+  loader.classList.remove("display");
+}
 window.addEventListener("keypress", (e) => {
   const guess = String.fromCharCode(e.charCode);
   game1.makeGuess(guess);
@@ -21,6 +31,8 @@ const render = () => {
 };
 
 const startGame = async () => {
+  displayLoading();
+  defs.textContent = "";
   const puzzle = await getPuzzle("2");
 
   const puzzleWords = puzzle.split(" ");
@@ -30,8 +42,8 @@ const startGame = async () => {
     const response = await getDefinition(puzzleWords[i]);
     if (response?.code === 500) {
       console.log(response);
-      let defTemp = document.createElement("p");
-      defTemp.textContent = `${i}. Error getting the definition for ${
+      let defTemp = document.createElement("i");
+      defTemp.textContent = `${i + 1}. Error getting the definition for the ${
         i === 0 ? "first" : "second"
       } word`;
       defs.appendChild(defTemp);
@@ -44,7 +56,7 @@ const startGame = async () => {
       defs.appendChild(defTemp);
     }
   }
-
+  hideLoading();
   game1 = new Hangman(puzzle, 9);
   render();
 };
