@@ -56,16 +56,17 @@ const getDefinition = async (word, type) => {
   const response = await fetch(
     "https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/ace?strictMatch=false",
     {
+      headers: {
+        "X-Request-Id": new Date(),
+        "Content-Type": "application/json",
+        // Accept: "application/json",
+        app_id: "",
+        app_key: "",
+      },
       method: "GET",
       //   mode: "same-origin",
       cache: "no-cache",
       credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        app_id: "id",
-        app_key: "key",
-      },
       redirect: "follow", // manual, *follow, error
       referrer: "no-referrer",
     }
