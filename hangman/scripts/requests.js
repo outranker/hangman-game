@@ -31,47 +31,9 @@ const getLocation = async () => {
 };
 
 const getDefinition = async (word, type) => {
-  const app_id = "id"; //"my_app_id"; // insert your APP Id
-  const app_key = "key"; //"my_app_key"; // insert your APP Key
-  const wordId = "ace";
-  const fields = "pronunciations";
-  const strictMatch = "false";
-  const options = {
-    host: "od-api.oxforddictionaries.com",
-    port: "443",
-    path:
-      "/api/v2/entries/en-gb/" +
-      wordId +
-      "?fields=" +
-      fields +
-      "&strictMatch=" +
-      strictMatch,
-    method: "GET",
-    headers: {
-      app_id: app_id,
-      app_key: app_key,
-    },
-  };
-  //   if (type === "adjective") {
   const response = await fetch(
-    "https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/ace?strictMatch=false",
-    {
-      headers: {
-        "X-Request-Id": new Date(),
-        "Content-Type": "application/json",
-        // Accept: "application/json",
-        app_id: "",
-        app_key: "",
-      },
-      method: "GET",
-      //   mode: "same-origin",
-      cache: "no-cache",
-      credentials: "include",
-      redirect: "follow", // manual, *follow, error
-      referrer: "no-referrer",
-    }
+    `https://hangman-api.javohirmirzo.fun/v1/hangman/get-word-definition?word=${word}`
   );
-  console.log("this is response definition", response);
-  //   } else {
-  //   }
+
+  return await response.json();
 };
