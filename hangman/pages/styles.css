@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: #2b292e;
+  color: #fafafa;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.container-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.form-login {
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.email {
+  margin-bottom: 20px;
+  height: 25px;
+  width: 280px;
+}
+
+.password {
+  height: 25px;
+  width: 280px;
+}
+
+h3,
+p {
+  position: relative;
+}
