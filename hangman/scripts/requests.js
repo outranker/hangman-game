@@ -30,10 +30,13 @@ const getLocation = async () => {
   }
 };
 
-const getDefinition = async (word, type) => {
-  const response = await fetch(
-    `https://hangman-api.javohirmirzo.fun/v1/hangman/get-word-definition?word=${word}`
-  );
-
-  return await response.json();
+const getDefinition = async (word) => {
+  if (word) {
+    const response = await fetch(
+      `https://hangman-api.javohirmirzo.fun/v1/hangman/get-word-definition?word=${word}`
+    );
+    return await response.json();
+  } else {
+    return;
+  }
 };

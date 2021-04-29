@@ -36,22 +36,22 @@ const startGame = async () => {
   const puzzle = await getPuzzle("2");
 
   const puzzleWords = puzzle.split(" ");
-  console.log(puzzleWords);
 
   for (let i = 0; i < puzzleWords.length; i++) {
     const response = await getDefinition(puzzleWords[i]);
     if (response?.code === 500) {
-      console.log(response);
       let defTemp = document.createElement("i");
       defTemp.textContent = `${i + 1}. Error getting the definition for the ${
         i === 0 ? "first" : "second"
       } word`;
       defs.appendChild(defTemp);
     } else {
-      console.log(response);
       let defTemp = document.createElement("p");
       defTemp.textContent = `${i + 1}. ${
-        response.result[0].lexicalEntries[0].entries[0].senses[0].definitions[0]
+        response.type === "oxford"
+          ? response.data.result[0].lexicalEntries[0].entries[0].senses[0]
+              .definitions[0]
+          : response.result.data[0].meanings[0].definitions[0].definition
       }`;
       defs.appendChild(defTemp);
     }
